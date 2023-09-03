@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages\QrLinks;
 
+use App\Models\QrLink;
 use App\Models\QrLinkGroup;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -13,6 +14,7 @@ class QrLinkIndex extends Component
     public function render()
     {
         $qrGroups = QrLinkGroup::ofUser(auth()->id())->paginate(10);
-        return view('livewire.pages.qr-links.qr-link-index');
+        $qrLinks = QrLink::ofUser(auth()->id())->paginate(10);
+        return view('livewire.pages.qr-links.qr-link-index', compact('qrGroups', 'qrLinks'));
     }
 }

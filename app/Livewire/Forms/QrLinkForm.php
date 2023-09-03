@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class QrLinkForm extends Form
 {
-    public ?QrLink $qrLink;
+    public ?QrLink $qrLink = null;
 
     #[Rule('nullable|exists:qr_link_groups,id')]
     public $qr_link_group_id;
@@ -32,6 +32,11 @@ class QrLinkForm extends Form
         $this->description = $qrLink->description;
     }
 
+    public function getQrLink(): ?QrLink
+    {
+        return $this->qrLink;
+    }
+
     public function store()
     {
         $this->validate();
@@ -42,7 +47,7 @@ class QrLinkForm extends Form
             $uuid = Str::random(8);
         }
 
-        QrLink::create(array_merge([
+        $this->qrLink = QrLink::create(array_merge([
             'uuid' => $uuid,
             'user_id' => auth()->id(),
         ], $this->except('qrLink')));
