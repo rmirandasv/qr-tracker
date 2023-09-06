@@ -13,6 +13,10 @@ class Qr extends Model
     protected $fillable = [
         'disk',
         'path',
+        'size',
+        'margin',
+        'label',
+        'label_size',
         'qrable_id',
         'qrable_type',
     ];

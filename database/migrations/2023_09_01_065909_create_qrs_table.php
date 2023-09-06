@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('disk');
             $table->string('path');
+            $table->integer('size');
+            $table->integer('margin');
+            $table->string('label');
+            $table->integer('label_size');
             $table->unsignedBigInteger('qrable_id');
             $table->string('qrable_type');
             $table->timestamps();

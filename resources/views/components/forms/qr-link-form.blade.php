@@ -1,5 +1,6 @@
-<form wire:submit="save">
-    <div class="flex flex-col space-y-2">
+<form wire:submit="save" class="p-4 border border-gray-200 bg-white rounded shadow">
+    <h2 class="text-lg font-semibold text-gray-700">{{ __('QR Link Data') }}</h2>
+    <div class="mt-3 flex flex-col space-y-2">
         <div class="flex flex-col">
             <label for="url" class="text-sm font-semibold text-gray-600">URL</label>
             <x-input type="text" wire:model="form.url" id="url" placeholder="https://example.com" />

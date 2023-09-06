@@ -23,17 +23,20 @@ class QrGenerator extends Component
     public $margin = 10;
     public $label = 'Scan the code';
     public $labelFontSize = 20;
-    public $logo;
 
-    public function mount($input)
+    public function mount($input, $size = 300, $margin = 10, $label = 'Scan the code', $labelFontSize = 20)
     {
         $this->input = $input;
+        $this->size = $size;
+        $this->margin = $margin;
+        $this->label = $label;
+        $this->labelFontSize = $labelFontSize;
     }
 
-    public function render()
+    protected function buildQrCode()
     {
-        $this->output = Builder::create()
-            ->writer(new SvgWriter())
+        $qrCode = Builder::create()
+            ->writer(new PngWriter())
             ->writerOptions([])
             ->data($this->input)
             ->encoding(new Encoding('UTF-8'))
@@ -47,14 +50,25 @@ class QrGenerator extends Component
             ->validateResult(false)
         ;
 
-        if ($this->logo) {
-            $this->output->logoPath($this->logo->getRealPath())
-                ->logoResizeToWidth(50)
-                ->logoResizeToHeight(50)
-            ;
-        }
+        return $qrCode->build();
+    }
 
-        $this->output = $this->output->build()->getDataUri();
+    public function download()
+    {
+        $qrName = 'qr-code-' . time() . '.png';
+        $this->buildQrCode()->saveToFile(public_path($qrName));
+        $this->dispatch('qr-downloaded', [
+            'size' => $this->size,
+            'margin' => $this->margin,
+            'label' => $this->label,
+            'label_size' => $this->labelFontSize,
+        ]);
+        return response()->download(public_path($qrName))->deleteFileAfterSend(true);
+    }
+
+    public function render()
+    {
+        $this->output = $this->buildQrCode()->getDataUri();
         return view('livewire.components.qr.qr-generator');
     }
 }

@@ -26,7 +26,7 @@
                             <td class="border px-4 py-2">{{ $qrLink->name }}</td>
                             <td class="border px-4 py-2">{{ $qrLink->url }}</td>
                             <td class="border px-4 py-2">
-                                <img src="{{ $qrLink->qrCodeUrl }}" alt="QR Code" />
+                                <img class="w-10 h-10" src="{{ Storage::disk($qrLink?->qr->disk)->url($qrLink?->qr->path) }}" alt="QR Code" />
                             </td>
                             <td class="border px-4 py-2">
                                 <a href="{{ route('qr-links.edit', $qrLink) }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">{{ __('Edit') }}</a>
