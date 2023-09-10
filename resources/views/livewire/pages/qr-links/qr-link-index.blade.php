@@ -12,7 +12,7 @@
                     <p class="mt-2 text-sm text-gray-700">{{ __('Manage your QR Links') }}</p>
                 </div>
                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <a href="{{ route('qr-links.create') }}"
+                    <a wire:navigate href="{{ route('qr-links.create') }}"
                         class="block rounded-md uppercase bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         {{ __('New Link') }}
                     </a>
@@ -63,8 +63,8 @@
                                         <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">{{ $qrLink->created_at->diffForHumans() }}</td>
                                         <td
                                             class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium">
-                                            <a href="{{ route('qr-links.show', $qrLink->id) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('View') }}</a>
-                                            <a href="{{ route('qr-links.edit', $qrLink->id) }}" class="ml-4 text-indigo-600 hover:text-indigo-900">{{ __('Edit') }}</a>
+                                            <a wire:navigate href="{{ route('qr-links.show', $qrLink->id) }}" class="text-indigo-600 hover:text-indigo-900">{{ __('View') }}</a>
+                                            <a wire:navigate href="{{ route('qr-links.edit', $qrLink->id) }}" class="ml-4 text-indigo-600 hover:text-indigo-900">{{ __('Edit') }}</a>
                                         </td>
                                     </tr>
                                 @endforeach

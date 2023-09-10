@@ -6,6 +6,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class QrLink extends Model
@@ -34,6 +35,11 @@ class QrLink extends Model
     public function qr(): MorphOne
     {
         return $this->morphOne(Qr::class, 'qrable');
+    }
+
+    public function visits(): HasMany
+    {
+        return $this->hasMany(QrLinkVisit::class);
     }
 
     public function scopeOfUser(Builder $query, $userId)
