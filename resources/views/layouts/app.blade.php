@@ -32,6 +32,12 @@
                 </header>
             @endif
 
+            @if (isset($breadcrumbs))
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $breadcrumbs }}
+                </div>
+            @endif
+
             <!-- Page Content -->
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <main>
