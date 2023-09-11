@@ -22,6 +22,7 @@ class Dashboard extends Component
             ->get();
 
         $columnChartModel = (new ColumnChartModel())
+            ->setAnimated(true)
             ->setTitle('Top QR Links');
 
         foreach ($topQrLinks as $qrLink) {

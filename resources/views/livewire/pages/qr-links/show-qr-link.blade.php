@@ -5,6 +5,23 @@
         </h2>
     </x-slot>
 
+    <x-slot name="breadcrumbs">
+        <x-breadcrumb :links="[
+            [
+                'url' => route('dashboard'),
+                'label' => __('Dashboard'),
+            ],
+            [
+                'url' => route('qr-links.index'),
+                'label' => __('QR Links'),
+            ],
+            [
+                'url' => route('qr-links.show', $qrLink),
+                'label' => $qrLink->name,
+            ],
+        ]" />
+    </x-slot>
+
     <div class="lg:flex lg:items-center lg:justify-between">
         <div class="min-w-0 flex-1">
             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">

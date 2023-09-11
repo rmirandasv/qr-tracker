@@ -4,6 +4,18 @@
             {{ __('QR Links') }}
         </h2>
     </x-slot>
+    <x-slot name="breadcrumbs">
+        <x-breadcrumb :links="[
+            [
+                'url' => route('dashboard'),
+                'label' => __('Dashboard'),
+            ],
+            [
+                'url' => route('qr-links.index'),
+                'label' => __('QR Links'),
+            ],
+        ]" />
+    </x-slot>
     <div class="flex flex-col">
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">

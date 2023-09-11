@@ -44,7 +44,7 @@ class CreateQrLink extends Component
 
             DB::commit();
 
-            return redirect()->route('qr-links.edit', $this->form->qrLink->id);
+            return $this->redirect(route('qr-links.show', $this->form->qrLink->id), navigate: true);
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e->getMessage());
