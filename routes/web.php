@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\QrLinkRedirectController;
 use App\Livewire\Pages\Dashboard;
+use App\Livewire\Pages\QrCodeGenerator;
 use App\Livewire\Pages\QrLinks\CreateQrLink;
 use App\Livewire\Pages\QrLinks\EditQrLink;
 use App\Livewire\Pages\QrLinks\QrLinkIndex;
@@ -37,4 +38,5 @@ Route::middleware([
     Route::get('/qr-links/{qrLink}/edit', EditQrLink::class)->name('qr-links.edit');
 });
 
+Route::get('qr-code-generator', QrCodeGenerator::class)->name('qr-code-generator');
 Route::get('/qr/{uuid}', QrLinkRedirectController::class)->name('qr-links.redirect');

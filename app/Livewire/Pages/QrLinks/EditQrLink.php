@@ -31,4 +31,10 @@ class EditQrLink extends Component
         $this->qrLink->qr()->update($data);
     }
 
+    public function save()
+    {
+        $this->form->update();
+        return $this->redirect(route('qr-links.index'), navigate: true);
+    }
+
 }

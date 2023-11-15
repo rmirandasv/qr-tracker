@@ -44,7 +44,13 @@
         </div>
         <div class="mt-4 flex flex-col">
             <div class="h-96">
-                <livewire:livewire-column-chart :column-chart-model="$columnChartModel" />
+                @if ($topQrLinks->count() > 0)
+                    <livewire:livewire-column-chart :column-chart-model="$columnChartModel" />
+                @else
+                    <div class="flex flex-col justify-center items-center">
+                        <span class="text-gray-500">{{ __('You don\'t have any QR links yet.') }}</span>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
